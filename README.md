@@ -231,7 +231,7 @@ web:
     GITLAB_OMNIBUS_CONFIG: |
       external_url 'https://gitlab.example.com'
       gitlab_rails['smtp_enable'] = true
-	    gitlab_rails['smtp_address'] = "smtp.gmail.com"
+      gitlab_rails['smtp_address'] = "smtp.gmail.com"
       gitlab_rails['smtp_port'] = 587
       gitlab_rails['smtp_user_name'] = "user@gmail.com"
       gitlab_rails['smtp_password'] = "app-password"
@@ -285,9 +285,13 @@ Load the Gitlab site in your browser. If you try to load it too shortly after st
 
 If everything is fine, then you will see the following page in your browser.
 
+ <p align="center"><img src="images/1.png" width=500></p>
+ 
 # Step 8 - Configure Gitlab
 Provide a password for Gitlab's Administrator Password. You will be taken to the login screen next. Use root as the username and password you just chose to log in.
 
+ <p align="center"><img src="images/2.png" width=500></p>
+ 
 ```sh
 docker exec -it gitlab-howtoforge-tutorial grep 'Password:' /etc/gitlab/initial_root_password
 
@@ -300,22 +304,34 @@ We will need to enable SMTP settings before we
 # Configure Gitlab Profile
 Click on the user icon on the upper right-hand corner to bring up the drop-down menu and select settings.
 
+ <p align="center"><img src="images/3.png" width=500></p>
+ 
 You will be taken to your Profile settings page. Add your name and e-mail here. You will need to confirm your email address for it to be updated. You can also add more information here about yourself if you want.
 
+ <p align="center"><img src="images/4.png" width=500></p>
+ 
 Click Update Profile Settings when you are done.
 
 # Change User Name
 Next, we need to change our username from root to something else as root is a pretty common guessable username. Click on Account in the left sidebar.
 
+ <p align="center"><img src="images/5.png" width=500></p>
+ 
 Change the user to whatever username you want to keep. Click on Update username to finish. You should also enable two-factor authentication here for more security.
 
 # Restrict Public Sign-ups
 By default, Gitlab installations allow anyone to sign up. If you don't want that, you should disable it. Click on the wrench looking icon in the top bar to access the Administration area.
 
+ <p align="center"><img src="images/6.png" width=500></p>
+ 
 To adjust settings, click on Settings in the left sidebar.
 
+ <p align="center"><img src="images/7.png" width=500></p>
+ 
 Here, scroll down to the Sign-up restrictions and click on the Expand button. Uncheck the Sign-up enabled box and click on Save changes when finished.
 
+ <p align="center"><img src="images/8.png" width=500></p>
+ 
 You will still be able to add new users via the Admin interface.
 
 # Add SSH Key
@@ -360,8 +376,12 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUf64YH7uJimFWVJSy/mgYiLRqBxVB6JJMTxZZ96Dw
 ```
 Go back to your Profile's Settings area and access SSH keys from the sidebar.
 
+ <p align="center"><img src="images/9.png" width=500></p>
+ 
 Paste the SSH key in the box provided and click on Add Key to proceed.
 
+ <p align="center"><img src="images/10.png" width=500></p>
+ 
 Now you can create and commit to your repositories without having to provide your Gitlab credentials.
 
 # Step 9 - Create your First Project
@@ -369,10 +389,16 @@ Each repository in Gitlab belongs to a project. A project includes a repository,
 
 To create your first repository, click Create a project.
 
+ <p align="center"><img src="images/11.png" width=500></p>
+ 
 You will be taken to the New Project page. Enter the project name. You can change the project slug to something different. Enter a description of the project if you like and change the visibility of the project as you desire. You can Initialize your repository with a README file. Once you are done, click Create project.
 
+ <p align="center"><img src="images/12.png" width=500></p>
+ 
 You will be taken to your repository page with just a single blank README.md file.
 
+ <p align="center"><img src="images/13.png" width=500></p>
+ 
 Now that our repository is live, let us try adding a changelog from the command line.
 
 Enter the following commands on your computer to create a CHANGELOG file and push it back to your repository. Make sure you have Git installed on your computer.
