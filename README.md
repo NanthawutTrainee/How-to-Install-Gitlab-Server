@@ -376,7 +376,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUf64YH7uJimFWVJSy/mgYiLRqBxVB6JJMTxZZ96Dw
 ```
 Go back to your Profile's Settings area and access SSH keys from the sidebar.
 
- <p align="center"><img src="images/9.png" width=500></p>
+ <p align="center"><img src="images/9.png" width=100></p>
  
 Paste the SSH key in the box provided and click on Add Key to proceed.
 
