@@ -244,7 +244,7 @@ web:
   ports:
     - '80:80'
     - '443:443'
-    - '22:22'
+    - '6622:6622'
     - '587:587'
   volumes:
     - '/srv/gitlab/config:/etc/gitlab'
@@ -345,7 +345,7 @@ This command is common to Mac OS, Linux and Git Bash/WSL on Windows. Accept the 
 
 ```sh
 Generating public/private rsa key pair.
-Enter file in which to save the key (/home/user/.ssh/id_rsa): /home/user/.ssh/gitlab
+Enter file in which to save the key (/home/test/.ssh/id_rsa): /home/test/.ssh/gitlab
 Enter passphrase (empty for no passphrase): 
 Enter same passphrase again: 
 Your identification has been saved in gitlab.
@@ -415,20 +415,11 @@ or Clone using HTTPS.
 ```sh
 $ git clone https://gitlab.example.com/user/howtoforge-test.git
 ```
-Enter the rest of the commands to create and push CHANGELOG.
-
-```sh
-$ cd howtoforge-test
-$ touch CHANGELOG  # Or create the file in your editor and enter a project description
-$ git add CHANGELOG
-$ git commit -m "add Changelog"
-$ git push -u origin master
-```
 
 # Step 10 - Manage Gitlab Container
 To view all the running containers, run the following command.
 ```sh
-$ docker-ps
+$ docker ps
 ```
 To stop your Gitlab container, run the following command.
 
@@ -439,11 +430,6 @@ To start your container again, use the following command.
 
 ```sh
 $ docker start gitlab-howtoforge-tutorial
-```
-In case, you want to remove your container, you can do so by the following command.
-
-```sh
-$ docker container rm gitlab-howtoforge-tutorial
 ```
 
 # Step 11 - Upgrade Gitlab
