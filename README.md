@@ -401,23 +401,6 @@ You will be taken to your repository page with just a single blank README.md fil
 
  <p align="center"><img src="images/13.png" width=500></p>
  
-Now that our repository is live, let us try adding a changelog from the command line.
-
-Enter the following commands on your computer to create a CHANGELOG file and push it back to your repository. Make sure you have Git installed on your computer.
-
-Clone the repository. You can clone either using SSH or HTTPS.
-
-Clone using SSH.
-
-```sh
-$ git clone git@gitlab.example.com:user/howtoforge-test.git
-```
-or Clone using HTTPS.
-
-```sh
-$ git clone https://gitlab.example.com/user/howtoforge-test.git
-```
-
 # Step 10 - Manage Gitlab Container
 To view all the running containers, run the following command.
 ```sh
