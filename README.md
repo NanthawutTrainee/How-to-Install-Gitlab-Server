@@ -9,6 +9,9 @@ Before we install Gitlab, we need to make sure our server has certain software t
  $ sudo apt install ca-certificates curl openssh-server ufw apt-transport-https -y
 ```
 
+ <p align="center"><img src="images/Screenshot(20).png" width=500></p>
+ 
+
 Some of the software above may be pre-installed for you.
 
 # Step 2 - Change your System's SSH Port
@@ -19,11 +22,18 @@ To do this, we need to edit the /etc/ssh/sshd_config file. Open the file in the 
  $ sudo nano /etc/ssh/sshd_config
 ```
 
+<p align="center"><img src="images/Screenshot(21).png" width=500></p>
+
+
 Find the following line and change 22 to 6622 and remove the # in front of it. You can choose any port you want.
 
 ```sh
  # Port 22
 ```
+
+<p align="center"><img src="images/Screenshot(23).png" width=500></p>
+
+
 Press Ctrl + X to close your file and press Y to save the changes.
 
 Restart the SSH service.
@@ -32,11 +42,7 @@ Restart the SSH service.
  $ sudo systemctl restart sshd
 ```
 
-Close your current SSH session and create a new one with the port 6622 and connect to your server again.
-
-```sh
- $ ssh non-root-sudo-user@192.0.2.2 -p 6622
-```
+<p align="center"><img src="images/Screenshot(24).png" width=500></p>
 
 # Step 3 - Configuring Firewall
 In our previous step, we installed, ufw (Uncomplicated Firewall). Before we can proceed to install Gitlab, we need to configure it.
@@ -66,20 +72,7 @@ Check the status of the firewall.
 ```
 You should see an output like the following.
 
-```sh
-Status: active
-
-To                         Action      From
---                         ------      ----
-OpenSSH                    ALLOW       Anywhere                  
-6622                       ALLOW       Anywhere                  
-80/tcp                     ALLOW       Anywhere                  
-443/tcp                    ALLOW       Anywhere                  
-OpenSSH (v6)               ALLOW       Anywhere (v6)             
-6622 (v6)                  ALLOW       Anywhere (v6)      
-80/tcp (v6)                ALLOW       Anywhere (v6)             
-443/tcp (v6)               ALLOW       Anywhere (v6)  
-```
+<p align="center"><img src="images/Screenshot(26).png" width=500></p>
 
 # Step 4 - Install Docker
 Add Docker's GPG key to your system.
@@ -87,11 +80,13 @@ Add Docker's GPG key to your system.
 ```sh
 $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
+
 Verify the fingerprint of the downloaded key.
 
 ```sh
 $ sudo apt-key fingerprint 0EBFCD88
 ```
+
 You should see an output like the following.
 
 ```sh
@@ -100,37 +95,44 @@ pub   rsa4096 2017-02-22 [SCEA]
 uid           [ unknown] Docker Release (CE deb) <docker@docker.com>
 sub   rsa4096 2017-02-22 [S]
 ```
+
 Add the Docker repository.
 
 ```sh
 $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```
+
+<p align="center"><img src="images/Screenshot(30).png" width=500></p>
+
+
 Update your package database.
 
 ```sh
 $ sudo apt update
 ```
+
+<p align="center"><img src="images/Screenshot(31).png" width=500></p>
+
+
 Install Docker-CE. CE is the Community Edition of the Docker.
 
 ```sh
 $ sudo apt install docker-ce -y
 ```
+
+<p align="center"><img src="images/Screenshot(32).png" width=500></p>
+
+
 Docker should be installed now. Check that it's running.
 ```sh
 $ sudo systemctl status docker
 ```
+
+
 The output should be similar to the following.
 
-```sh
-? docker.service - Docker Application Container Engine
-   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
-   Active: active (running) since Thu 2019-10-11 21:10:31 UTC; 32s ago
-     Docs: https://docs.docker.com
- Main PID: 19128 (dockerd)
-    Tasks: 12
-   CGroup: /system.slice/docker.service
-           ??19128 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
-```
+<p align="center"><img src="images/Screenshot(33).png" width=500></p>
+
 Press q to exit.
 
 Add your limited Linux user account to the docker group so that you can run docker without sudo.
@@ -138,6 +140,7 @@ Add your limited Linux user account to the docker group so that you can run dock
 ```sh
 sudo usermod -aG docker $USER
 ```
+
 $USER variable will pick and add the current logged in user to the docker group. Replace $USER with the actual username if you are not currently logged in with that user.
 
 Switch to the user we just added. Even though you were already logged in, you will still need to switch to it again to reload the permissions.
@@ -152,6 +155,8 @@ $ docker run hello-world
 ```
 You should see the following output which will tell Docker is installed and working properly.
 
+<p align="center"><img src="images/Screenshot(37).png" width=500></p>
+
 ```sh
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
@@ -162,12 +167,16 @@ Status: Downloaded newer image for hello-world:latest
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 ```
+
 # Step 5 - Install Docker Compose
 It's possible to skip this step and proceed but having Docker Compose installed will make running Gitlab much easier especially if you want to do it on more than one server.
 
 ```sh
 $ sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
+
+<p align="center"><img src="images/Screenshot(38).png" width=500></p>
+
 At the time of writing this tutorial, 1.24.1 is the current stable release of Docker Compose. You can check for the latest release version from their Github page.
 
 Apply executable permissions to the docker compose binary.
@@ -180,16 +189,19 @@ Add Command Completion to Docker Compose.
 ```sh
 $ sudo curl -L https://raw.githubusercontent.com/docker/compose/1.24.1/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
 ```
+
+<p align="center"><img src="images/Screenshot(40).png" width=500></p>
+
 Verify if your installation was successful.
 
 ```sh
 $ docker-compose --version
 ```
+
 It will print out the following output.
 
-```sh
-docker-compose version 1.24.1, build 4667896b
-```
+<p align="center"><img src="images/Screenshot(41).png" width=500></p>
+
 # Step 6 - Install Gitlab
 
 Download Gitlab's Docker image from Dockerhub. This image contains everything you need to run Docker - nginx, PostgreSQL, Redis, etc. Run the following command to download the image.
@@ -197,6 +209,9 @@ Download Gitlab's Docker image from Dockerhub. This image contains everything yo
 ```sh
 $ docker pull gitlab/gitlab-ee:latest
 ```
+<p align="center"><img src="images/Screenshot(43).png" width=500></p>
+<p align="center"><img src="images/Screenshot(44).png" width=500></p>
+
 Even though this tutorial is about installing the Community Edition, yet we will grab the Enterprise Edition image of Gitlab. This is because Enterprise edition behaves exactly like the Community Edition unless you upgrade to it by entering your license. Upgrading a Community Edition installation to the Enterprise Edition presents more complications.
 
 It will take a little while to download the complete the image. When the job is finished, you can run the following command to check all the images currently on your system.
@@ -211,6 +226,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 gitlab/gitlab-ee    latest              4bacb2356d28        4 days ago          1.87GB
 hello-world         latest              fce289e99eb9        9 months ago        1.84kB
 ```
+
 # Step 7 - Run Gitlab
 We can run Gitlab container straight away at this point by supplying all the options in a single command but that would mean every time you need to run the container, you need to supply these variables. Docker Compose makes this process easier as it will allow you to save the configuration into a .yml file which will be then used to run and launch the container.
 
@@ -219,6 +235,8 @@ Create a docker-compose.yml.
 ```sh
 $ nano docker-compose.yml
 ```
+<p align="center"><img src="images/Screenshot(48).png" width=500></p>
+
 Paste the following code.
 
 ```sh
@@ -251,6 +269,7 @@ web:
     - '/srv/gitlab/logs:/var/log/gitlab'
     - '/srv/gitlab/data:/var/opt/gitlab'
 ```
+<p align="center"><img src="images/Screenshot(47).png" width=500></p>
 
 Let's see what each of the options above means.
 
@@ -274,11 +293,16 @@ You will see something like the following.
 ```sh
 Creating gitlab-howtoforge-tutorial ... done
 ```
+<p align="center"><img src="images/Screenshot(49).png" width=500></p>
+
 It will take several more minutes before you can access Gitlab via the browser. You can find out more about the startup process via the following command.
 
 ```sh
 $ docker logs -f gitlab-howtoforge-tutorial
 ```
+<p align="center"><img src="images/Screenshot(50).png" width=500></p>
+<p align="center"><img src="images/Screenshot(51).png" width=500></p>
+
 To exit the log monitoring process, press Ctrl + C.
 
 Load the Gitlab site in your browser. If you try to load it too shortly after starting the container, you will get the 502 error. If that happens, wait for a few more minutes and try again.
