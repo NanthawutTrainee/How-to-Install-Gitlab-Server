@@ -9,7 +9,7 @@ Before we install Gitlab, we need to make sure our server has certain software t
  $ sudo apt install ca-certificates curl openssh-server ufw apt-transport-https -y
 ```
 
- <p align="center"><img src="images/Screenshot(20).png" width=500></p>
+ <p align="center"><img src="images/Screenshot (20).png" width=500></p>
  
 
 Some of the software above may be pre-installed for you.
@@ -22,7 +22,7 @@ To do this, we need to edit the /etc/ssh/sshd_config file. Open the file in the 
  $ sudo nano /etc/ssh/sshd_config
 ```
 
-<p align="center"><img src="images/Screenshot(21).png" width=500></p>
+<p align="center"><img src="images/Screenshot (21).png" width=500></p>
 
 
 Find the following line and change 22 to 6622 and remove the # in front of it. You can choose any port you want.
@@ -31,7 +31,7 @@ Find the following line and change 22 to 6622 and remove the # in front of it. Y
  # Port 22
 ```
 
-<p align="center"><img src="images/Screenshot(23).png" width=500></p>
+<p align="center"><img src="images/Screenshot (23).png" width=500></p>
 
 
 Press Ctrl + X to close your file and press Y to save the changes.
@@ -42,7 +42,7 @@ Restart the SSH service.
  $ sudo systemctl restart sshd
 ```
 
-<p align="center"><img src="images/Screenshot(24).png" width=500></p>
+<p align="center"><img src="images/Screenshot (24).png" width=500></p>
 
 # Step 3 - Configuring Firewall
 In our previous step, we installed, ufw (Uncomplicated Firewall). Before we can proceed to install Gitlab, we need to configure it.
@@ -72,7 +72,7 @@ Check the status of the firewall.
 ```
 You should see an output like the following.
 
-<p align="center"><img src="images/Screenshot(26).png" width=500></p>
+<p align="center"><img src="images/Screenshot (26).png" width=500></p>
 
 # Step 4 - Install Docker
 Add Docker's GPG key to your system.
@@ -102,7 +102,7 @@ Add the Docker repository.
 $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```
 
-<p align="center"><img src="images/Screenshot(30).png" width=500></p>
+<p align="center"><img src="images/Screenshot (30).png" width=500></p>
 
 
 Update your package database.
@@ -111,7 +111,7 @@ Update your package database.
 $ sudo apt update
 ```
 
-<p align="center"><img src="images/Screenshot(31).png" width=500></p>
+<p align="center"><img src="images/Screenshot (31).png" width=500></p>
 
 
 Install Docker-CE. CE is the Community Edition of the Docker.
@@ -120,7 +120,7 @@ Install Docker-CE. CE is the Community Edition of the Docker.
 $ sudo apt install docker-ce -y
 ```
 
-<p align="center"><img src="images/Screenshot(32).png" width=500></p>
+<p align="center"><img src="images/Screenshot (32).png" width=500></p>
 
 
 Docker should be installed now. Check that it's running.
@@ -131,7 +131,7 @@ $ sudo systemctl status docker
 
 The output should be similar to the following.
 
-<p align="center"><img src="images/Screenshot(33).png" width=500></p>
+<p align="center"><img src="images/Screenshot (33).png" width=500></p>
 
 Press q to exit.
 
@@ -155,7 +155,7 @@ $ docker run hello-world
 ```
 You should see the following output which will tell Docker is installed and working properly.
 
-<p align="center"><img src="images/Screenshot(37).png" width=500></p>
+<p align="center"><img src="images/Screenshot (37).png" width=500></p>
 
 ```sh
 Unable to find image 'hello-world:latest' locally
@@ -175,7 +175,7 @@ It's possible to skip this step and proceed but having Docker Compose installed 
 $ sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
 
-<p align="center"><img src="images/Screenshot(38).png" width=500></p>
+<p align="center"><img src="images/Screenshot (38).png" width=500></p>
 
 At the time of writing this tutorial, 1.24.1 is the current stable release of Docker Compose. You can check for the latest release version from their Github page.
 
@@ -190,7 +190,7 @@ Add Command Completion to Docker Compose.
 $ sudo curl -L https://raw.githubusercontent.com/docker/compose/1.24.1/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
 ```
 
-<p align="center"><img src="images/Screenshot(40).png" width=500></p>
+<p align="center"><img src="images/Screenshot (40).png" width=500></p>
 
 Verify if your installation was successful.
 
@@ -200,7 +200,7 @@ $ docker-compose --version
 
 It will print out the following output.
 
-<p align="center"><img src="images/Screenshot(41).png" width=500></p>
+<p align="center"><img src="images/Screenshot (41).png" width=500></p>
 
 # Step 6 - Install Gitlab
 
@@ -209,8 +209,8 @@ Download Gitlab's Docker image from Dockerhub. This image contains everything yo
 ```sh
 $ docker pull gitlab/gitlab-ee:latest
 ```
-<p align="center"><img src="images/Screenshot(43).png" width=500></p>
-<p align="center"><img src="images/Screenshot(44).png" width=500></p>
+<p align="center"><img src="images/Screenshot (43).png" width=500></p>
+<p align="center"><img src="images/Screenshot (44).png" width=500></p>
 
 Even though this tutorial is about installing the Community Edition, yet we will grab the Enterprise Edition image of Gitlab. This is because Enterprise edition behaves exactly like the Community Edition unless you upgrade to it by entering your license. Upgrading a Community Edition installation to the Enterprise Edition presents more complications.
 
@@ -235,7 +235,7 @@ Create a docker-compose.yml.
 ```sh
 $ nano docker-compose.yml
 ```
-<p align="center"><img src="images/Screenshot(48).png" width=500></p>
+<p align="center"><img src="images/Screenshot (48).png" width=500></p>
 
 Paste the following code.
 
@@ -269,7 +269,7 @@ web:
     - '/srv/gitlab/logs:/var/log/gitlab'
     - '/srv/gitlab/data:/var/opt/gitlab'
 ```
-<p align="center"><img src="images/Screenshot(47).png" width=500></p>
+<p align="center"><img src="images/Screenshot (47).png" width=500></p>
 
 Let's see what each of the options above means.
 
@@ -293,15 +293,15 @@ You will see something like the following.
 ```sh
 Creating gitlab-howtoforge-tutorial ... done
 ```
-<p align="center"><img src="images/Screenshot(49).png" width=500></p>
+<p align="center"><img src="images/Screenshot (49).png" width=500></p>
 
 It will take several more minutes before you can access Gitlab via the browser. You can find out more about the startup process via the following command.
 
 ```sh
 $ docker logs -f gitlab-howtoforge-tutorial
 ```
-<p align="center"><img src="images/Screenshot(50).png" width=500></p>
-<p align="center"><img src="images/Screenshot(51).png" width=500></p>
+<p align="center"><img src="images/Screenshot (50).png" width=500></p>
+<p align="center"><img src="images/Screenshot (51).png" width=500></p>
 
 To exit the log monitoring process, press Ctrl + C.
 
