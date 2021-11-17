@@ -318,9 +318,9 @@ Provide a password for Gitlab's Administrator Password. You will be taken to the
  
 ```sh
 docker exec -it gitlab-howtoforge-tutorial grep 'Password:' /etc/gitlab/initial_root_password
-
-Password cqksv/ZB4bH0T6GM+rHBR+f8E3WexzkOX9dS8nagUw0=
 ```
+
+<p align="center"><img src="images/Screenshot (53).png" width=500></p>
 
 # Configure SMTP
 We will need to enable SMTP settings before we
@@ -367,37 +367,15 @@ $ ssh-keygen
 
 This command is common to Mac OS, Linux and Git Bash/WSL on Windows. Accept the defaults and leave the passphrase field blank.
 
-```sh
-Generating public/private rsa key pair.
-Enter file in which to save the key (/home/test/.ssh/id_rsa): /home/test/.ssh/gitlab
-Enter passphrase (empty for no passphrase): 
-Enter same passphrase again: 
-Your identification has been saved in gitlab.
-Your public key has been saved in gitlab.pub.
-The key fingerprint is:
-SHA256:6dNGAPyd8JAkHAikYOW2PsFjGlzBBpwy4XQ9RQgVwK8 user@userpc
-The key's randomart image is:
-+---[RSA 2048]----+
-|+*OB=*O=..       |
-|B+o+o+oo+        |
-|oo.+. ...= .     |
-|. + ..  .o+      |
-| o *.   S .      |
-|  =Eo  . o       |
-| . o    o o      |
-|    .    o       |
-|                 |
-+----[SHA256]-----+
-```
+<p align="center"><img src="images/Screenshot (57).png" width=500></p>
 
 You can display your public key via the following command
 
 ```sh
 $ cat ~/.ssh/gitlab.pub
 ```
-```sh
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUf64YH7uJimFWVJSy/mgYiLRqBxVB6JJMTxZZ96DwExoINhWVRhQAgMgExBWGpUCpWXhLcNuIM+EfFRtCq+YYyLC+GlHsNdnLgecGgop72p8BEi8UckgCiCSuMrWCMAOFh5NKs2YHpF7bOUjXQRVvGujLuV1UBof7SXQ/za7e3aybNiH3KpA6oWSSmpqnOt8rZT54IjLnVFUSLx7ZxWDVW1bO29mI8NjWwzZGLAtNIkJQEOqVo8nhVkroFHvBTrZnUsmr5oFOWG++LPqED9EUSPTpO8PNnogYT3xsVncBMMAEt0pPE7ATmstQc161SEtqAUa98Qb0RRKqCKcKStOp user@userpc
-```
+<p align="center"><img src="images/Screenshot (58).png" width=500></p>
+
 Go back to your Profile's Settings area and access SSH keys from the sidebar.
 
  <p align="center"><img src="images/9.png" width=100></p>
